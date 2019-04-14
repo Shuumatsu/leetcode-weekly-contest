@@ -15,15 +15,15 @@ using namespace std;
 class Solution {
   public:
     int longestArithSeqLength(vector<int> &a) {
-        map<int, int> m;
-        for (auto i = 1; i < a.size(); i++) {
-            auto diff = a[i] - a[i - 1];
-            m[diff] += 1;
-        }
+        map<int, map<int, int>> diff_len;
 
         auto length = 0;
-        for (auto [_, x] : m) {
-            length = max(length, x);
+        for (auto j = 1; j < a.size(); j++) {
+            for (auto i = 0; i < j; i++) {
+                auto diff = a[j] - a[i];
+                diff_len[diff][j] = diff_len[diff][i] + 1;
+                length = max(length, diff_len[diff][j]);
+            }
         }
 
         return length + 1;

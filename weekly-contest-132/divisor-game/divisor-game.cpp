@@ -14,7 +14,5 @@ using namespace std;
 
 class Solution {
   public:
-    bool divisorGame(int N) {
-        auto get_primes = [&]() { [] };
-    }
+    bool divisorGame(int N) { return N % 2 == 0; }
 };
